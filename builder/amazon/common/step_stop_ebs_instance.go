@@ -45,15 +45,22 @@ func (s *StepStopEBSBackedInstance) Run(state multistep.StateBag) multistep.Step
 				InstanceIds: []*string{instance.InstanceId},
 			})
 
+			if err == nil {
+				// success
+				return true, nil
+			}
+
 			if awsErr, ok := err.(awserr.Error); ok {
 				if awsErr.Code() == "InvalidInstanceID.NotFound" {
 					ui.Message(fmt.Sprintf(
 						"Error stopping instance; will retry ..."+
 							"Error: %s", err))
+					// retry
 					return false, nil
 				}
 			}
-			return true, nil
+			// errored, but not in expected way. Don't want to retry.
+			return true, err
 		})
 
 		if err != nil {
