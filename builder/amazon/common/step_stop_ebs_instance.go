@@ -3,6 +3,7 @@ package common
 import (
 	"fmt"
 
+	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/service/ec2"
 	"github.com/hashicorp/packer/common"
 	"github.com/hashicorp/packer/packer"
@@ -59,7 +60,7 @@ func (s *StepStopEBSBackedInstance) Run(state multistep.StateBag) multistep.Step
 					return false, nil
 				}
 			}
-			// errored, but not in expected way. Don't want to retry.
+			// errored, but not in expected way. Don't want to retry
 			return true, err
 		})
 
