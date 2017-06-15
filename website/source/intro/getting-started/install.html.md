@@ -38,6 +38,9 @@ for instructions on setting the PATH on Linux and Mac. [This
 page](https://stackoverflow.com/questions/1618280/where-can-i-set-path-to-make-exe-on-windows)
 contains instructions for setting the PATH on Windows.
 
+***Note:*** *Arch Linux contains a different package known as packer, but HashiCorp's Packer is
+available in the AUR as packer-io, and the command line consequently changes from packer to packer-io.*
+
 ## Verifying the Installation
 
 After installing Packer, verify the installation worked by opening a new command
